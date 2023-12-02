@@ -1,19 +1,39 @@
 ---
 import Header from '@/partials/Header.astro'
+import type { PageDefaultProps } from '@/types/PageDefaultProps';
+import { translations as t } from '@/utils/translations'
+
+const { language } = Astro.props as PageDefaultProps
+
+const canonical = language === 'pt' ? 'https://www.hernandes.me/pt' : 'https://www.hernandes.me'
+const alternate = language === 'pt' ? 'https://www.hernandes.me' : 'https://www.hernandes.me/pt'
+const alternateLanguage = language === 'pt' ? 'en' : 'pt'
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={language}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Isaque Hernandes</title>
+		<title>{t[language].seo.title}</title>
+		<rel type="canonical" href={canonical} />
+		<meta http-equiv="content-language" content={language} />
+		<meta name="description" content={t[language].seo.description} />
+		<meta name="keywords" content={t[language].seo.keywords} />
+		<link rel="alternate" hreflang={alternateLanguage} href={alternate} />
+		<link rel="alternate" hreflang="x-default" href="https://www.hernandes.me" />
+		<meta property="og:title" content={t[language].seo.title} />
+		<meta property="og:description" content={t[language].seo.description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="twitter:title" content={t[language].seo.title} />
+		<meta property="twitter:description" content={t[language].seo.description} />
+		<meta property="twitter:url" content={canonical} />
 	</head>
 	<body class="bg-sky-50">
-		<Header />
+		<Header language={language} />
 		<slot />
 	</body>
 </html>

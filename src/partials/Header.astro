@@ -1,26 +1,29 @@
 ---
 import { LightModeSelector } from "@/components/Header/LightModeSelector";
 import { LanguageSelector } from "@/components/Header/LanguageSelector";
+import type { PageDefaultProps } from "@/types/PageDefaultProps";
+import { translations as t } from '@/utils/translations'
 
+const { language } = Astro.props as PageDefaultProps
 ---
 
 <header class="grid grid-cols-3 mx-auto max-w-screen-xl gap-2 p-6 items-center">
-  <h1 class="font-medium text-xl flex gap-2 items-center">
-    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 5.33333V2.66667C0 1.93333 0.2548 1.30578 0.7644 0.784C1.274 0.262222 1.88587 0.000888889 2.6 0H23.4C24.115 0 24.7273 0.261333 25.2369 0.784C25.7465 1.30667 26.0009 1.93422 26 2.66667V5.33333H23.4V2.66667H2.6V5.33333H0ZM7.8 24V21.3333H2.6C1.885 21.3333 1.27313 21.0724 0.7644 20.5507C0.255667 20.0289 0.000866667 19.4009 0 18.6667V16H2.6V18.6667H23.4V16H26V18.6667C26 19.4 25.7456 20.028 25.2369 20.5507C24.7282 21.0733 24.1159 21.3342 23.4 21.3333H18.2V24H7.8ZM3.64 10.6667L7.02 7.2L5.2 5.33333L0 10.6667L5.2 16L7.02 14.1333L3.64 10.6667ZM22.36 10.6667L18.98 14.1333L20.8 16L26 10.6667L20.8 5.33333L18.98 7.2L22.36 10.6667Z" fill="#0EA5E9"/>
-    </svg>
-    <span class="pb-1">Isaque Hernandes</span>
-  </h1>
+  <div>
+    <h1 class="font-medium text-xl flex gap-2 items-center">
+      <img src="/favicon.svg" alt="Logo" />
+      <span class="pb-1">Isaque Hernandes</span>
+    </h1>
+  </div>
   <nav class="flex justify-center">
     <ul class="flex font-medium gap-4">
-      <li class="hover:font-bold hover:text-sky-500"><a href="#about">About</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#skills">Skills</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#career">Career</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#projects">Projects</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#about">{t[language].header.about}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#skills">{t[language].header.skills}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#career">{t[language].header.career}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#projects">{t[language].header.projects}</a></li>
     </ul>
   </nav>
   <div class="flex justify-end gap-2">
-    <LanguageSelector client:idle />
+    <LanguageSelector client:idle language={language} />
     <LightModeSelector client:idle />
   </div>
 </header>
