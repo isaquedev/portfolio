@@ -1,13 +1,16 @@
 ---
 import Header from '@/partials/Header.astro'
 import type { PageDefaultProps } from '@/types/PageDefaultProps';
-import { translations as t } from '@/utils/translations'
+import { translations } from '@/utils/translations'
+import "@/global.css"
 
 const { language } = Astro.props as PageDefaultProps
 
 const canonical = language === 'pt' ? 'https://www.hernandes.me/pt' : 'https://www.hernandes.me'
 const alternate = language === 'pt' ? 'https://www.hernandes.me' : 'https://www.hernandes.me/pt'
 const alternateLanguage = language === 'pt' ? 'en' : 'pt'
+
+const t = translations[language]
 ---
 
 <!doctype html>
@@ -18,22 +21,47 @@ const alternateLanguage = language === 'pt' ? 'en' : 'pt'
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{t[language].seo.title}</title>
+		<title>{t.seo.title}</title>
 		<rel type="canonical" href={canonical} />
 		<meta http-equiv="content-language" content={language} />
-		<meta name="description" content={t[language].seo.description} />
-		<meta name="keywords" content={t[language].seo.keywords} />
+		<meta name="description" content={t.seo.description} />
+		<meta name="keywords" content={t.seo.keywords} />
 		<link rel="alternate" hreflang={alternateLanguage} href={alternate} />
 		<link rel="alternate" hreflang="x-default" href="https://www.hernandes.me" />
-		<meta property="og:title" content={t[language].seo.title} />
-		<meta property="og:description" content={t[language].seo.description} />
+		<meta property="og:title" content={t.seo.title} />
+		<meta property="og:description" content={t.seo.description} />
 		<meta property="og:url" content={canonical} />
-		<meta property="twitter:title" content={t[language].seo.title} />
-		<meta property="twitter:description" content={t[language].seo.description} />
+		<meta property="twitter:title" content={t.seo.title} />
+		<meta property="twitter:description" content={t.seo.description} />
 		<meta property="twitter:url" content={canonical} />
 	</head>
-	<body class="bg-sky-50">
+	<body class="min-h-screen">
 		<Header language={language} />
 		<slot />
 	</body>
 </html>
+
+<script is:inline>
+	const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+			const theme = localStorage.getItem("theme")
+
+			if (theme === 'system') {
+				const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+				return isDark ? 'dark' : 'light'
+			}
+
+      return theme
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+	
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+</script>

@@ -15,6 +15,15 @@ export const translations = {
       title: 'Hello,\nI’m',
       name: 'Isaque',
       description: "I'm an experienced full-stack developer with deep knowledge of front-end, and good knowledge of back-end.\n\nI'm used to building systems from scratch. Passing for the whole process of choosing the tech stack, planning the architecture, deeply understanding the problem to be solved, and being responsible for the project in the long term.",
+    },
+    theme: {
+      light: 'Light mode',
+      dark: 'Dark mode',
+      system: 'System',
+      icon: {
+        light: 'A sun icon that indicates light mode is active',
+        dark: 'A moon icon that indicates dark mode is active',
+      }
     }
   },
   pt: {
@@ -33,6 +42,15 @@ export const translations = {
       title: 'Olá,\nEu sou\n',
       name: 'Isaque',
       description: "Eu sou um desenvolvedor fullstack experiente, com um conhecimento profundo de front-end e um bom conhecimento de backend.\n\nEstou acostumado a desenvolvedor sistemas desde o início. Passando por todo processo de selecionar a stack técnica, planejar a arquitetura, entender a fundo o problema a ser resolvido e ser responsável pelo projeto a longo prazo."
+    },
+    theme: {
+      light: 'Modo claro',
+      dark: 'Modo escuro',
+      system: 'Sistema',
+      icon: {
+        light: 'Um ícone de sol que indica que o site está no modo claro',
+        dark: 'Um ícone de lua que indica que o site está no modo escuro',
+      }
     }
   }
 }

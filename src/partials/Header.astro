@@ -1,10 +1,12 @@
 ---
-import { LightModeSelector } from "@/components/Header/LightModeSelector";
+import { ThemeSelector } from "@/components/Header/ThemeSelector";
 import { LanguageSelector } from "@/components/Header/LanguageSelector";
 import type { PageDefaultProps } from "@/types/PageDefaultProps";
-import { translations as t } from '@/utils/translations'
+import { translations } from '@/utils/translations'
 
 const { language } = Astro.props as PageDefaultProps
+
+const t = translations[language]
 ---
 
 <header class="grid grid-cols-3 mx-auto max-w-screen-xl gap-2 p-6 items-center">
@@ -16,14 +18,14 @@ const { language } = Astro.props as PageDefaultProps
   </div>
   <nav class="flex justify-center">
     <ul class="flex font-medium gap-4">
-      <li class="hover:font-bold hover:text-sky-500"><a href="#about">{t[language].header.about}</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#skills">{t[language].header.skills}</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#career">{t[language].header.career}</a></li>
-      <li class="hover:font-bold hover:text-sky-500"><a href="#projects">{t[language].header.projects}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#about">{t.header.about}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#skills">{t.header.skills}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#career">{t.header.career}</a></li>
+      <li class="hover:font-bold hover:text-sky-500"><a href="#projects">{t.header.projects}</a></li>
     </ul>
   </nav>
   <div class="flex justify-end gap-2">
     <LanguageSelector client:idle language={language} />
-    <LightModeSelector client:idle />
+    <ThemeSelector client:load language={language} />
   </div>
 </header>
