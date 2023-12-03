@@ -34,6 +34,11 @@ const t = translations[language]
 		<meta property="twitter:title" content={t.seo.title} />
 		<meta property="twitter:description" content={t.seo.description} />
 		<meta property="twitter:url" content={canonical} />
+		<!-- Prefetch dark mode icons -->
+		<link rel="prefetch" href="/assets/modes/dark.svg" as="image" />
+		<link rel="prefetch" href="/assets/modes/dark_big.svg" as="image" />
+		<link rel="prefetch" href="/assets/modes/system.svg" as="image" />
+		<link rel="prefetch" href="/assets/arrows/arrow_down_dark.svg" as="image" />
 	</head>
 	<body class="min-h-screen">
 		<Header language={language} />
