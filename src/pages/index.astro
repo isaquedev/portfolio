@@ -1,7 +1,18 @@
 ---
+import { HighlightedText } from '@/components/HighlitedText';
 import Layout from '@/layouts/Layout.astro';
+import { translations } from '@/utils/translations';
+
+const language = 'en'
+
+const t = translations[language]
 ---
 
-<Layout language='en'>
-	
+<Layout language={language}>
+	<section class="max-w-4xl mx-auto">
+    <h2 class="text-6xl font-bold text-start inline-block">
+      <span class="whitespace-pre">{t.about.title}</span>
+      <HighlightedText as='span' size='h1'>{t.about.name}</HighlightedText>
+    </h2>
+  </section>
 </Layout>
