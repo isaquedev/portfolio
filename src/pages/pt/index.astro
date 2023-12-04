@@ -1,7 +1,10 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import ContentLayout from '@/layouts/ContentLayout.astro';
+
+const language = 'pt'
 ---
 
-<Layout language='pt'>
-	
-</Layout>
+<MainLayout language={language}>
+	<ContentLayout language={language} />
+</MainLayout>

@@ -1,0 +1,20 @@
+---
+import { HighlightedText } from '@/components/HighlitedText';
+import { translations } from '@/utils/translations';
+import { ProfilePhoto } from '@/components/About/ProfilePhoto';
+import type { PageDefaultProps } from '@/types/PageDefaultProps';
+
+const { language } = Astro.props as PageDefaultProps
+
+const t = translations[language]
+---
+
+<section class="relative max-w-4xl mx-auto flex flex-col gap-6 items-start">
+  <h2 class="text-6xl font-bold text-start inline-block">
+    <span class="whitespace-pre">{t.about.title}</span>
+    <HighlightedText as='span' size='h1'>{t.about.name}</HighlightedText>
+  </h2>
+  <HighlightedText as='h3'>{t.about.jobTitle}</HighlightedText>
+  <p class="font-medium whitespace-pre-line leading-5 max-w-lg">{t.about.description}</p>
+  <ProfilePhoto client:idle language={language} />
+</section>
